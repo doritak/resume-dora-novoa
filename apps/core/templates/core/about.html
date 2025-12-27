@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About | Dora Novoa{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-5 fw-bold mb-4">About Me</h1>
+
+                <div class="mb-5">
+                    <p class="lead">
+                        I'm a Software Engineer transitioning into Data Science, bringing a unique blend of
+                        software development expertise and data analysis skills.
+                    </p>
+                    <p>
+                        After years of building robust software solutions, I discovered my passion for
+                        extracting insights from data and using machine learning to solve complex problems.
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="mb-3"><i class="bi bi-mortarboard me-2"></i>Education & Training</h3>
+                    <div class="card border-0 shadow-sm mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Data Science Bootcamp</h5>
+                            <p class="card-subtitle text-muted mb-2">Zurich, Switzerland</p>
+                            <p class="card-text">Intensive program covering machine learning, statistical analysis, and data visualization.</p>
+                        </div>
+                    </div>
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Data Science Bootcamp</h5>
+                            <p class="card-subtitle text-muted mb-2">Santiago, Chile</p>
+                            <p class="card-text">Focused on practical applications of data science in real-world business scenarios.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="mb-3"><i class="bi bi-tools me-2"></i>Technical Stack</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <h6>Programming Languages</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary">Python</span>
+                                <span class="badge bg-primary">SQL</span>
+                                <span class="badge bg-primary">JavaScript</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Data Science</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-success">Pandas</span>
+                                <span class="badge bg-success">NumPy</span>
+                                <span class="badge bg-success">Scikit-learn</span>
+                                <span class="badge bg-success">TensorFlow</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Frameworks</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-info">Django</span>
+                                <span class="badge bg-info">Flask</span>
+                                <span class="badge bg-info">FastAPI</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Tools & Platforms</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-secondary">Docker</span>
+                                <span class="badge bg-secondary">AWS</span>
+                                <span class="badge bg-secondary">PostgreSQL</span>
+                                <span class="badge bg-secondary">Git</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="{% static 'cv/resume.pdf' %}" class="btn btn-primary btn-lg me-2" download>
+                        <i class="bi bi-download me-2"></i>Download Resume
+                    </a>
+                    <a href="{% url 'contact:contact' %}" class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-envelope me-2"></i>Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
