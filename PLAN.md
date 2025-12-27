@@ -43,7 +43,7 @@
 ## 🎯 Personalización Pendiente (Prioridad Alta)
 
 ### Contenido Personal
-- [ ] **Foto de perfil**: Agregar `static/images/profile.jpg`
+- [ ] **Foto de perfil**: Agregar `static/images/profile.png`
 - [ ] **CV en PDF**: Agregar `static/cv/resume.pdf`
 - [ ] **Links sociales**: Actualizar en `templates/base.html`
   - GitHub URL

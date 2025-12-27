@@ -748,7 +748,7 @@
   ---
   Próximos pasos:
 
-  1. Agregar tu foto: Coloca profile.jpg en static/images/
+  1. Agregar tu foto: Coloca profile.png en static/images/
   2. Agregar tu CV: Coloca resume.pdf en static/cv/
   3. Agregar proyectos: Desde el admin puedes crear proyectos con imágenes, links a GitHub y notebooks
   4. Personalizar links: Edita los links de GitHub/LinkedIn en templates/base.html
@@ -835,7 +835,7 @@
     - Agregar tus proyectos de Data Science
     - Ver mensajes de contacto
   3. Personaliza tu portfolio:
-    - Agrega tu foto: static/images/profile.jpg
+    - Agrega tu foto: static/images/profile.png
     - Agrega tu CV: static/cv/resume.pdf
     - Edita links de GitHub/LinkedIn en templates/base.html
 
@@ -903,7 +903,7 @@
   │   └── base.html              # Layout Bootstrap 5
   └── static/
       ├── css/style.css
-      ├── images/                # Poner profile.jpg aquí
+      ├── images/                # Poner profile.png aquí
       └── cv/                    # Poner resume.pdf aquí
 
   ---
@@ -977,7 +977,7 @@
   Personalización Pendiente
 
   1. Agregar foto de perfil:
-  static/images/profile.jpg
+  static/images/profile.png
   2. Agregar CV:
   static/cv/resume.pdf
   3. Editar links sociales en templates/base.html:

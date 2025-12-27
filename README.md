@@ -8,7 +8,7 @@ A professional portfolio website built with Django, showcasing data science proj
 - **Database:** PostgreSQL 16
 - **Frontend:** Bootstrap 5, Django Templates
 - **Containerization:** Docker, Docker Compose
-- **Production:** AWS ECS Fargate, RDS, S3
+- **Production:** AWS App Runner, RDS, S3
 
 ## Quick Start
 ### Prerequisites
@@ -21,7 +21,7 @@ A professional portfolio website built with Django, showcasing data science proj
 1. **Clone the repository:**
    ```bash
    git clone <repository-url>
-   cd Claude-ejemplo1
+   cd Resume-Dora-Novoa
    ```
 
 2. **Create environment file:**
@@ -98,7 +98,7 @@ A professional portfolio website built with Django, showcasing data science proj
 
 1. **Profile Photo:**
    ```
-   static/images/profile.jpg
+   static/images/profile.png
    ```
 
 2. **Resume/CV:**
@@ -152,7 +152,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-## Production Deployment (AWS)
+## Production Deployment (AWS App Runner)
 
 ### Architecture
 
@@ -163,25 +163,79 @@ python manage.py runserver
                     └──────┬──────┘
                            │
                     ┌──────▼──────┐
-                    │     ALB     │
+                    │ App Runner  │◄──── Auto-scaling
+                    │  (Django)   │      HTTPS included
                     └──────┬──────┘
                            │
-              ┌────────────┼────────────┐
-              │            │            │
-        ┌─────▼─────┐ ┌────▼────┐ ┌─────▼─────┐
-        │ECS Fargate│ │   RDS   │ │    S3     │
-        │  (Django) │ │(Postgres)│ │(Static)  │
-        └───────────┘ └─────────┘ └───────────┘
+              ┌────────────┴────────────┐
+              │                         │
+        ┌─────▼─────┐             ┌─────▼─────┐
+        │    RDS    │             │    S3     │
+        │(PostgreSQL)│            │ (Static)  │
+        └───────────┘             └───────────┘
 ```
 
-### Deployment Steps
+### Why App Runner?
 
-1. Build and push Docker image to ECR
-2. Create RDS PostgreSQL instance
-3. Create S3 bucket for static/media files
-4. Configure ECS Cluster with Fargate
-5. Set up Application Load Balancer
-6. Configure environment variables in ECS Task Definition
+| Feature | App Runner | ECS Fargate |
+|---------|-----------|-------------|
+| Load Balancer | Included | ~$16-22/month extra |
+| NAT Gateway | Not needed | ~$32/month extra |
+| Configuration | Simple | Complex |
+| Auto-scaling | Built-in | Manual setup |
+| **Estimated Cost** | **~$20-35/mo** | **~$50-85/mo** |
+
+### Quick Deploy
+
+```bash
+cd deploy
+./deploy-apprunner.sh
+```
+
+### Manual Deployment Steps
+
+1. **Create ECR Repository:**
+   ```bash
+   aws ecr create-repository --repository-name resume-dora-novoa
+   ```
+
+2. **Build and Push Docker Image:**
+   ```bash
+   # Login to ECR
+   aws ecr get-login-password --region us-east-1 | \
+     docker login --username AWS --password-stdin YOUR_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com
+
+   # Build and push
+   docker build -t resume-dora-novoa .
+   docker tag resume-dora-novoa:latest YOUR_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/resume-dora-novoa:latest
+   docker push YOUR_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/resume-dora-novoa:latest
+   ```
+
+3. **Create RDS PostgreSQL Instance:**
+   ```bash
+   aws rds create-db-instance \
+     --db-instance-identifier resume-db \
+     --db-instance-class db.t4g.micro \
+     --engine postgres \
+     --master-username dbadmin \
+     --master-user-password YOUR_PASSWORD \
+     --allocated-storage 20
+   ```
+
+4. **Create S3 Bucket:**
+   ```bash
+   aws s3 mb s3://resume-dora-novoa-static
+   ```
+
+5. **Create App Runner Service** via AWS Console or CLI with environment variables
+
+6. **Post-deployment:**
+   ```bash
+   python manage.py collectstatic --noinput
+   python manage.py migrate
+   ```
+
+See `deploy/README.md` for detailed instructions.
 
 ## Models
 
@@ -214,4 +268,4 @@ Data Scientist | Software Engineer
 
 ---
 
-Built with Django and deployed on AWS
+Built with Django and deployed on AWS App Runner

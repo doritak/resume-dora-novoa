@@ -10,7 +10,7 @@
         <div class="row align-items-center min-vh-75">
             <div class="col-lg-6">
                 <h1 class="display-4 fw-bold mb-3">Hi, I'm Dora Novoa</h1>
-                <p class="lead mb-4">Data Scientist | Software Engineer</p>
+                <p class="lead mb-4">Open for hiring</p>
                 <p class="mb-4">
                     Transitioning from Software Engineering to Data Science.
                     Completed bootcamps in Zurich and Santiago de Chile.
@@ -24,10 +24,20 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center mt-4 mt-lg-0">
-                <img src="{% static 'images/profile.jpg' %}" alt="Dora Novoa"
-                     class="rounded-circle img-fluid shadow"
-                     style="max-width: 350px; border: 5px solid white;"
-                     onerror="this.src='https://via.placeholder.com/350?text=DN'">
+                <div class="profile-wrap">
+                    <div class="profile-frame">
+                    <img src="{% static 'images/profile.png' %}" alt="Dora Novoa"
+                        class="img-fluid shadow profile-img"
+                        onerror="this.src='https://via.placeholder.com/350?text=DN'">
+                    </div>
+
+                    <!-- Texto animado -->
+                    <div class="hero-badges" aria-label="Roles">
+                    <span>Data Science</span><span class="sep">|</span>
+                    <span>IT Manager</span><span class="sep">|</span>
+                    <span>Software Engineer</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -52,7 +62,7 @@
                     <div class="card-body text-center">
                         <i class="bi bi-bar-chart fs-1 text-primary mb-3"></i>
                         <h5 class="card-title">Data Science</h5>
-                        <p class="card-text text-muted">Pandas, NumPy, Scikit-learn, TensorFlow</p>
+                        <p class="card-text text-muted">Pandas, NumPy, Scikit-learn, Streamlit, Plotly, LLM, TensorFlow</p>
                     </div>
                 </div>
             </div>
@@ -61,7 +71,7 @@
                     <div class="card-body text-center">
                         <i class="bi bi-database fs-1 text-primary mb-3"></i>
                         <h5 class="card-title">Databases & Cloud</h5>
-                        <p class="card-text text-muted">PostgreSQL, AWS, Docker</p>
+                        <p class="card-text text-muted">SQL Advanced with PostgreSQL, MySQL, ORM, AWS, Docker</p>
                     </div>
                 </div>
             </div>

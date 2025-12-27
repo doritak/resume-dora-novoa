@@ -1,15 +1,86 @@
 /* Custom styles for Dora Novoa Portfolio */
 
 :root {
-    --primary-color: #0d6efd;
+    /*--primary-color: #0d6efd; */
+    --primary-color: #0d9488;
     --secondary-color: #6c757d;
 }
 
 /* Hero Section */
+/*
 .hero-section {
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    -- Antiguo -- background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    background: linear-gradient(135deg, #0d6efd 0%, #5b21b6 100%);
+}
+*/
+
+
+/* Asegura que el hero permita overlays */
+.hero-section{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0d6efd 0%, #5b21b6 100%);
 }
 
+/* Contenedor relativo para poder posicionar el texto respecto a la foto */
+.profile-wrap{
+  position: relative;
+  display: inline-block;
+}
+
+/* Marco con fondo (antes lo tenías inline) */
+.profile-frame{
+  display: inline-block;
+  background-image: url("/static/images/fondo2.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 0 0 175px 175px;
+  padding: 10px;
+}
+
+/* La imagen como antes */
+.profile-img{
+  max-width: 350px;
+  border-radius: 0 0 175px 175px;
+}
+
+/* Texto que “sube” y se detiene */
+.hero-badges{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -18px;         /* ✅ punto final: pegado a la base de la foto */
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  /*padding: 10px 16px;*/
+  padding: 12px 22px;
+  border-radius: 999px;
+
+  background: rgba(150, 149, 149, 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+/* 🔥 CLAVES PARA UNA SOLA LÍNEA */
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  text-align: center;
+
+  opacity: 0;
+  animation: riseStop 1.2s ease-out 0.2s forwards;
+}
+
+.hero-badges .sep{
+  opacity: 0.7;
+  font-weight: 400;
+}
+/*======================================*/
 .min-vh-75 {
     min-height: 75vh;
 }
@@ -71,4 +142,39 @@ footer a:hover {
         min-height: auto;
         padding: 3rem 0;
     }
+}
+
+/* Animación: entra desde abajo, hace un “rebote” suave y se queda */
+@keyframes riseStop{
+  0%{
+    transform: translateX(-50%) translateY(70px);
+    opacity: 0;
+  }
+  70%{
+    transform: translateX(-50%) translateY(-8px);
+    opacity: 1;
+  }
+  100%{
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 576px){
+  .hero-badges{
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    gap: 8px;
+    bottom: -14px;
+    white-space: nowrap;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  .hero-badges{
+    animation: none;
+    opacity: 1;
+    transform: translateX(-50%);
+  }
 }
